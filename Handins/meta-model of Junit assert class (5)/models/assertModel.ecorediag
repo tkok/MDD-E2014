@@ -3,14 +3,6 @@
   <children xmi:type="notation:Node" xmi:id="_PHBDYKPCEeOSZ4sGKUnyVw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_PHCRgKPCEeOSZ4sGKUnyVw" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_PHCRgaPCEeOSZ4sGKUnyVw" type="5001">
-      <children xmi:type="notation:Node" xmi:id="_dcUVAKPCEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertTrue/message"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_dcUVAaPCEeOSZ4sGKUnyVw"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_fxHpMKPCEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertTrue/condition"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_fxHpMaPCEeOSZ4sGKUnyVw"/>
-      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_PHCRgqPCEeOSZ4sGKUnyVw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_PHCRg6PCEeOSZ4sGKUnyVw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_PHCRhKPCEeOSZ4sGKUnyVw"/>
@@ -59,14 +51,6 @@
   <children xmi:type="notation:Node" xmi:id="_8mTEwKPCEeOSZ4sGKUnyVw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_8mUS4KPCEeOSZ4sGKUnyVw" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_8mUS4aPCEeOSZ4sGKUnyVw" type="5001">
-      <children xmi:type="notation:Node" xmi:id="_91olsKPCEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertFalse/message"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_91olsaPCEeOSZ4sGKUnyVw"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="__uFVEKPCEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertFalse/condition"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="__uFVEaPCEeOSZ4sGKUnyVw"/>
-      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_8mUS4qPCEeOSZ4sGKUnyVw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_8mUS46PCEeOSZ4sGKUnyVw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_8mUS5KPCEeOSZ4sGKUnyVw"/>
@@ -83,18 +67,6 @@
   <children xmi:type="notation:Node" xmi:id="_QgUjMKPDEeOSZ4sGKUnyVw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_QgVxUKPDEeOSZ4sGKUnyVw" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_QgVxUaPDEeOSZ4sGKUnyVw" type="5001">
-      <children xmi:type="notation:Node" xmi:id="_RiWA4KPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertEquals/message"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_RiWA4aPDEeOSZ4sGKUnyVw"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_TUAy0KPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertEquals/expected"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_TUAy0aPDEeOSZ4sGKUnyVw"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_VGA78KPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertEquals/actual"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_VGA78aPDEeOSZ4sGKUnyVw"/>
-      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_QgVxUqPDEeOSZ4sGKUnyVw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_QgVxU6PDEeOSZ4sGKUnyVw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_QgVxVKPDEeOSZ4sGKUnyVw"/>
@@ -112,19 +84,15 @@
     <children xmi:type="notation:Node" xmi:id="_YdktoKPDEeOSZ4sGKUnyVw" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_YdktoaPDEeOSZ4sGKUnyVw" type="5001">
       <children xmi:type="notation:Node" xmi:id="_fiwAkKPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertNotEqualsDelta/message"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_fiwAkaPDEeOSZ4sGKUnyVw"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_heQD8KPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertNotEqualsDelta/unexpected"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_heQD8aPDEeOSZ4sGKUnyVw"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_jYTV0KPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertNotEqualsDelta/actual"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_jYTV0aPDEeOSZ4sGKUnyVw"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_kiLH8KPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertNotEqualsDelta/delta"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_kiLH8aPDEeOSZ4sGKUnyVw"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_YdktoqPDEeOSZ4sGKUnyVw"/>
@@ -143,22 +111,6 @@
   <children xmi:type="notation:Node" xmi:id="_qeac4KPDEeOSZ4sGKUnyVw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_qebD8KPDEeOSZ4sGKUnyVw" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_qebD8aPDEeOSZ4sGKUnyVw" type="5001">
-      <children xmi:type="notation:Node" xmi:id="_rgF8UKPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertEqualsDelta/message"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_rgF8UaPDEeOSZ4sGKUnyVw"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_tEegMKPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertEqualsDelta/expected"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_tEegMaPDEeOSZ4sGKUnyVw"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_wTey0KPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertEqualsDelta/actual"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_wTey0aPDEeOSZ4sGKUnyVw"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_xfZMUKPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertEqualsDelta/delta"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_xfZMUaPDEeOSZ4sGKUnyVw"/>
-      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_qebD8qPDEeOSZ4sGKUnyVw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_qebD86PDEeOSZ4sGKUnyVw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_qebD9KPDEeOSZ4sGKUnyVw"/>
@@ -175,18 +127,6 @@
   <children xmi:type="notation:Node" xmi:id="_2UViAKPDEeOSZ4sGKUnyVw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_2UWJEKPDEeOSZ4sGKUnyVw" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_2UWJEaPDEeOSZ4sGKUnyVw" type="5001">
-      <children xmi:type="notation:Node" xmi:id="_5NSFEKPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertNotEqualsLong/message"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_5NSFEaPDEeOSZ4sGKUnyVw"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_51Pc8KPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertNotEqualsLong/unexpected"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_51Pc8aPDEeOSZ4sGKUnyVw"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_6-wpwKPDEeOSZ4sGKUnyVw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="assertModel.ecore#//AssertNotEqualsLong/actual"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_6-wpwaPDEeOSZ4sGKUnyVw"/>
-      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_2UWJEqPDEeOSZ4sGKUnyVw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_2UWJE6PDEeOSZ4sGKUnyVw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_2UWJFKPDEeOSZ4sGKUnyVw"/>
@@ -258,5 +198,12 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_-h0g06PDEeOSZ4sGKUnyVw" points="[-7, 8, 184, -197]$[-189, 193, 2, -12]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-h2WAKPDEeOSZ4sGKUnyVw" id="(0.18110236220472442,0.9012345679012346)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-h2WAaPDEeOSZ4sGKUnyVw" id="(0.7549019607843137,0.30952380952380953)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_A0seIKSPEeOTJsA9F4V1oA" type="3003" target="_T1_7AKPCEeOSZ4sGKUnyVw">
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_A0seIaSPEeOTJsA9F4V1oA" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_A0seIqSPEeOTJsA9F4V1oA" fontName="Lucida Grande"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_A0seI6SPEeOTJsA9F4V1oA" points="[10, -8, -117, 100]$[121, -128, -6, -20]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_A0xWoKSPEeOTJsA9F4V1oA" id="(0.5588235294117647,0.21428571428571427)"/>
   </edges>
 </notation:Diagram>

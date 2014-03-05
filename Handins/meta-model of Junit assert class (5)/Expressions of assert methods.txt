@@ -28,3 +28,11 @@ assertNotEquals(String message, double unexpected,
 assertEquals(String message, double expected,
             double actual, double delta)
 	assert Math.abs(unexpected - actual) != delta
+
+
+methods have parameters like message, unexpected
+
+paremeters have 
+	identifier (name of the parameter),
+	types: strings, longs, double, objects
+

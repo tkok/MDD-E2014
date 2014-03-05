@@ -4,4 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:assertmodel="http://assertmodel/1.0"
-    xsi:schemaLocation="http://assertmodel/1.0 assertModel.ecore"/>
+    xsi:schemaLocation="http://assertmodel/1.0 assertModel.ecore">
+  <contains
+      xsi:type="assertmodel:AssertTrue"/>
+</assertmodel:Model>

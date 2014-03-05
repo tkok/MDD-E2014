@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<model:Model
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:model="http://model/1.0"
+    xsi:schemaLocation="http://model/1.0 model.ecore">
+  <contains>
+    <has identifier="message"/>
+    <has identifier="delta"
+        type="double"/>
+    <has identifier="expected"
+        type="double"/>
+  </contains>
+  <contains/>
+</model:Model>
