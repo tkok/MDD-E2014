@@ -1,0 +1,30 @@
+assertTrue(String message, boolean condition) 
+	asserts condition
+
+
+assertFalse(String message, boolean condition)
+	asserts condition
+
+
+assertEquals(String message, Object expected,
+            Object actual)
+	asserts expected == actual
+
+
+assertNotEquals(String message, Object unexpected,
+            Object actual)	
+	asserts unexpected != actual
+
+
+assertNotEquals(String message, long unexpected, long actual)
+	asserts unexpected == actual
+
+
+assertNotEquals(String message, double unexpected,
+            double actual, double delta)
+	asserts Math.abs(unexpected - actual) <= delta 
+
+
+assertEquals(String message, double expected,
+            double actual, double delta)
+	assert Math.abs(unexpected - actual) != delta

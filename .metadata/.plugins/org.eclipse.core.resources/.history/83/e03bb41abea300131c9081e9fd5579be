@@ -1,0 +1,147 @@
+/**
+ * (c) Andrzej Wąsowski 2014
+ * An example of a state machine in the FSM language (implemented as internal DSL)
+ * Only one machine per model is considered for simplicity.
+ */
+import fsm.FiniteStateMachine;
+import fsm.internalDSL.IncompleteTransition;
+import fsm.internalDSL.Model;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
+import org.eclipse.xtext.xbase.lib.Pair;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+
+/**
+ * This is an example of possible syntax that I prototyped as free text.
+ * You can compare it with the result below the comment
+ * 
+ * Model CoffeeMachine
+ * 
+ * Machine Coffee {
+ * 
+ * 	initial [ if (coin) then "what drink do you want?" => choice ]
+ * 
+ * choice [ if (tea) 	 then "serving tea" 			   => makeTea
+ * 			if (coffee)  then "serving coffee" 			   => makeCoffee
+ * 			if (timeout) then "coin returned; insert coin" => initial
+ * ]
+ * 
+ * makeCofee [ if (5s) then "coffee served. Enjoy!" => initial ]
+ * makeTea   [ if (5s) then "tea served. Enjoy!" 	=> initial ]
+ * 
+ * }
+ */
+@SuppressWarnings("all")
+public class CoffeeMachine extends Model {
+  private final static FiniteStateMachine m = new Function0<FiniteStateMachine>() {
+    public FiniteStateMachine apply() {
+      final Procedure1<FiniteStateMachine> _function = new Procedure1<FiniteStateMachine>() {
+        public void apply(final FiniteStateMachine it) {
+          final Procedure1<Pair<FiniteStateMachine,IncompleteTransition>> _function = new Procedure1<Pair<FiniteStateMachine,IncompleteTransition>>() {
+            public void apply(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+              Model.on(it);
+              Model.input(it, "coin");
+              Model.output(it, "what drink do you want?");
+              Model.and(it);
+              Model.go(it);
+              Model.to(it, "selection");
+              Model.on(it);
+              Model.input(it, "break");
+              Model.output(it, "machine is broken");
+              Model.and(it);
+              Model.go(it);
+              Model.to(it, "broken");
+            }
+          };
+          Model.initial(it, "initial", _function);
+          final Procedure1<Pair<FiniteStateMachine,IncompleteTransition>> _function_1 = new Procedure1<Pair<FiniteStateMachine,IncompleteTransition>>() {
+            public void apply(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+              Model.on(it);
+              Model.input(it, "tea");
+              Model.output(it, "serving tea");
+              Model.and(it);
+              Model.go(it);
+              Model.to(it, "making tea");
+              Model.on(it);
+              Model.input(it, "coffee");
+              Model.output(it, "serving coffee");
+              Model.and(it);
+              Model.go(it);
+              Model.to(it, "making coffee");
+              Model.on(it);
+              Model.input(it, "timeout");
+              Model.output(it, "coin returned; insert coin");
+              Model.and(it);
+              Model.go(it);
+              Model.to(it, "initial");
+              Model.on(it);
+              Model.input(it, "break");
+              Model.output(it, "machine is broken!");
+              Model.and(it);
+              Model.go(it);
+              Model.to(it, "broken");
+            }
+          };
+          Model.state(it, "selection", _function_1);
+          final Procedure1<Pair<FiniteStateMachine,IncompleteTransition>> _function_2 = new Procedure1<Pair<FiniteStateMachine,IncompleteTransition>>() {
+            public void apply(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+              Model.on(it);
+              Model.input(it, "done");
+              Model.output(it, "coffee served. Enjoy!");
+              Model.and(it);
+              Model.go(it);
+              Model.to(it, "initial");
+              Model.on(it);
+              Model.input(it, "break");
+              Model.output(it, "machine is broken!");
+              Model.and(it);
+              Model.go(it);
+              Model.to(it, "broken");
+            }
+          };
+          Model.state(it, "making coffee", _function_2);
+          final Procedure1<Pair<FiniteStateMachine,IncompleteTransition>> _function_3 = new Procedure1<Pair<FiniteStateMachine,IncompleteTransition>>() {
+            public void apply(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+              Model.on(it);
+              Model.input(it, "done");
+              Model.output(it, "tea served. Enjoy!");
+              Model.and(it);
+              Model.go(it);
+              Model.to(it, "initial");
+              Model.on(it);
+              Model.input(it, "break");
+              Model.output(it, "machine is broken!");
+              Model.and(it);
+              Model.go(it);
+              Model.to(it, "broken");
+            }
+          };
+          Model.state(it, "making tea", _function_3);
+          final Procedure1<Pair<FiniteStateMachine,IncompleteTransition>> _function_4 = new Procedure1<Pair<FiniteStateMachine,IncompleteTransition>>() {
+            public void apply(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+              Model.go(it);
+              Model.on(it);
+              Model.and(it);
+              Model.on(it);
+              Model.and(it);
+              Model.on(it);
+              Model.and(it);
+              Model.on(it);
+            }
+          };
+          Model.state(it, "broken", _function_4);
+        }
+      };
+      FiniteStateMachine _machine = Model.machine("coffeeMachine", _function);
+      return _machine;
+    }
+  }.apply();
+  
+  /**
+   * this is not a part of the domain specific model.
+   * I just put the main function here to avoid creating an
+   * additional file for it
+   */
+  public static void main(final String[] args) {
+    Model.run(CoffeeMachine.m);
+  }
+}

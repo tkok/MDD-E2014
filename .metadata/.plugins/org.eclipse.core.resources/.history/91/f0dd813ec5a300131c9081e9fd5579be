@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<assertmodel:Model
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:assertmodel="http://assertmodel/1.0"
+    xsi:schemaLocation="http://assertmodel/1.0 assertModel.ecore">
+  <contains
+      xsi:type="assertmodel:AssertTrue"/>
+  <contains
+      xsi:type="assertmodel:AssertNotEqualsLong"/>
+  <contains
+      xsi:type="assertmodel:AssertFalse"/>
+  <contains
+      xsi:type="assertmodel:AssertFalse"/>
+</assertmodel:Model>

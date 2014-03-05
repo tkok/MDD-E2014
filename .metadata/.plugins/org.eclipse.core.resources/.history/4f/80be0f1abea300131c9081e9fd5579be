@@ -1,0 +1,39 @@
+/**
+ * (c) Andrzej Wąsowski 2014
+ * A simple implementation of the FSM language as an internal DSL in Xtend.
+ * Only one machine per model is considered for simplicity.
+ */
+package fsm.internalDSL;
+
+@SuppressWarnings("all")
+public class IncompleteTransition {
+  private String _input;
+  
+  public String getInput() {
+    return this._input;
+  }
+  
+  public void setInput(final String input) {
+    this._input = input;
+  }
+  
+  private String _output;
+  
+  public String getOutput() {
+    return this._output;
+  }
+  
+  public void setOutput(final String output) {
+    this._output = output;
+  }
+  
+  private String _source;
+  
+  public String getSource() {
+    return this._source;
+  }
+  
+  public void setSource(final String source) {
+    this._source = source;
+  }
+}

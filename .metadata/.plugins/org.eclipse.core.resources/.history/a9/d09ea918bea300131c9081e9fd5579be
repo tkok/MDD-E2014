@@ -1,0 +1,140 @@
+/**
+ * (c) Andrzej Wąsowski 2014
+ * A set of constraints for the FiniteStateMachine example, implemented in Xtend.
+ * I avoid EMF integration for constraints on purpose, to keep this simple.
+ * IMHO, you should always avoid the EMF integration for constraints, if you do
+ * not explicitly need it.  It seems just way to complex.
+ */
+package fsm.validation;
+
+import com.google.common.base.Objects;
+import fsm.FiniteStateMachine;
+import fsm.Model;
+import fsm.NamedElement;
+import fsm.State;
+import fsm.Transition;
+import java.util.Arrays;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.Functions.Function2;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
+
+@SuppressWarnings("all")
+public class Constraints {
+  /**
+   * Fall back for all types that are not constrained
+   */
+  protected static boolean _constraint(final EObject it) {
+    return true;
+  }
+  
+  protected static boolean _constraint(final FiniteStateMachine it) {
+    EList<State> _states = it.getStates();
+    State _initial = it.getInitial();
+    boolean _contains = _states.contains(_initial);
+    return _contains;
+  }
+  
+  protected static boolean _constraint(final NamedElement it) {
+    String _name = it.getName();
+    boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_name);
+    boolean _not = (!_isNullOrEmpty);
+    return _not;
+  }
+  
+  protected static boolean _constraint(final State it) {
+    boolean _and = false;
+    EList<Transition> _leavingTransitions = it.getLeavingTransitions();
+    final Function1<Transition,Boolean> _function = new Function1<Transition,Boolean>() {
+      public Boolean apply(final Transition t1) {
+        EList<Transition> _leavingTransitions = it.getLeavingTransitions();
+        final Function1<Transition,Boolean> _function = new Function1<Transition,Boolean>() {
+          public Boolean apply(final Transition t2) {
+            boolean _or = false;
+            boolean _equals = Objects.equal(t1, t2);
+            if (_equals) {
+              _or = true;
+            } else {
+              String _input = t1.getInput();
+              String _input_1 = t2.getInput();
+              boolean _notEquals = (!Objects.equal(_input, _input_1));
+              _or = (_equals || _notEquals);
+            }
+            return Boolean.valueOf(_or);
+          }
+        };
+        boolean _forall = IterableExtensions.<Transition>forall(_leavingTransitions, _function);
+        return Boolean.valueOf(_forall);
+      }
+    };
+    boolean _forall = IterableExtensions.<Transition>forall(_leavingTransitions, _function);
+    if (!_forall) {
+      _and = false;
+    } else {
+      EList<Transition> _leavingTransitions_1 = it.getLeavingTransitions();
+      final Function1<Transition,Boolean> _function_1 = new Function1<Transition,Boolean>() {
+        public Boolean apply(final Transition t) {
+          boolean _and = false;
+          String _input = t.getInput();
+          boolean _equals = Objects.equal(_input, "idle");
+          if (!_equals) {
+            _and = false;
+          } else {
+            State _target = t.getTarget();
+            boolean _equals_1 = Objects.equal(_target, it);
+            _and = (_equals && _equals_1);
+          }
+          return Boolean.valueOf(_and);
+        }
+      };
+      boolean _exists = IterableExtensions.<Transition>exists(_leavingTransitions_1, _function_1);
+      _and = (_forall && _exists);
+    }
+    return _and;
+  }
+  
+  protected static boolean _constraint(final Transition it) {
+    State _source = it.getSource();
+    FiniteStateMachine _machine = _source.getMachine();
+    State _target = it.getTarget();
+    FiniteStateMachine _machine_1 = _target.getMachine();
+    boolean _equals = Objects.equal(_machine, _machine_1);
+    return _equals;
+  }
+  
+  protected static boolean _constraint(final Model it) {
+    EList<FiniteStateMachine> _machines = it.getMachines();
+    final Function2<Integer,FiniteStateMachine,Integer> _function = new Function2<Integer,FiniteStateMachine,Integer>() {
+      public Integer apply(final Integer sum, final FiniteStateMachine it) {
+        EList<State> _states = it.getStates();
+        int _size = _states.size();
+        int _plus = ((sum).intValue() + _size);
+        return Integer.valueOf(_plus);
+      }
+    };
+    Integer _fold = IterableExtensions.<FiniteStateMachine, Integer>fold(_machines, Integer.valueOf(0), _function);
+    boolean _lessEqualsThan = ((_fold).intValue() <= 40);
+    return _lessEqualsThan;
+  }
+  
+  public static boolean constraint(final EObject it) {
+    if (it instanceof FiniteStateMachine) {
+      return _constraint((FiniteStateMachine)it);
+    } else if (it instanceof Model) {
+      return _constraint((Model)it);
+    } else if (it instanceof State) {
+      return _constraint((State)it);
+    } else if (it instanceof NamedElement) {
+      return _constraint((NamedElement)it);
+    } else if (it instanceof Transition) {
+      return _constraint((Transition)it);
+    } else if (it != null) {
+      return _constraint(it);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(it).toString());
+    }
+  }
+}

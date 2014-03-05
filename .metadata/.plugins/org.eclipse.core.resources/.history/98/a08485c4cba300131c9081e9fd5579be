@@ -1,0 +1,55 @@
+/**
+ * (c) Andrzej W\ufffd\ufffdsowski 2014
+ * A set of constraints for the FiniteStateMachine example, implemented in Xtend.
+ * I avoid EMF integration for constraints on purpose, to keep this simple.
+ * IMHO, you should always avoid the EMF integration for constraints, if you do
+ * not explicitly need it.  It seems just way to complex.
+ */
+package JUnitDomain.validation;
+
+import JUnitDomain.Fixture;
+import JUnitDomain.Suite;
+import java.util.Arrays;
+import org.eclipse.emf.ecore.EObject;
+
+@SuppressWarnings("all")
+public class Constraints {
+  /**
+   * To solve the exercise, just replace the "true" constants
+   * with suitable expressions and test them with some instance data
+   */
+  protected static boolean _constraint(final Fixture it) {
+    boolean _and = false;
+    if (!true) {
+      _and = false;
+    } else {
+      _and = (true && 
+        true);
+    }
+    return _and;
+  }
+  
+  protected static boolean _constraint(final Suite it) {
+    return true;
+  }
+  
+  /**
+   * Fall back for all types that are not constrained
+   */
+  protected static boolean _constraint(final EObject it) {
+    return true;
+  }
+  
+  public static boolean constraint(final EObject it) {
+    if (it instanceof Suite) {
+      return _constraint((Suite)it);
+    } else if (it instanceof Fixture) {
+      return _constraint((Fixture)it);
+    } else if (it != null) {
+      return _constraint(it);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(it).toString());
+    }
+  }
+}

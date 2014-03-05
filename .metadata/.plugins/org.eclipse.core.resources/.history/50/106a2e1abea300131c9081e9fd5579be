@@ -1,0 +1,236 @@
+/**
+ * (c) Andrzej Wąsowski 2014
+ * A simple implementation of the FSM language as an internal DSL in Xtend.
+ * Only one machine per model is considered for simplicity.
+ */
+package fsm.internalDSL;
+
+import com.google.common.base.Objects;
+import fsm.FiniteStateMachine;
+import fsm.FsmFactory;
+import fsm.State;
+import fsm.Transition;
+import fsm.internalDSL.IncompleteTransition;
+import java.util.List;
+import java.util.Scanner;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ObjectExtensions;
+import org.eclipse.xtext.xbase.lib.Pair;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+
+@SuppressWarnings("all")
+public class Model {
+  public static Object on(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+    return null;
+  }
+  
+  public static Object and(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+    return null;
+  }
+  
+  public static Object go(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+    return null;
+  }
+  
+  /**
+   * Finite State Machine
+   */
+  public static FiniteStateMachine machine(final String name, final Procedure1<? super FiniteStateMachine> addStates) {
+    final FiniteStateMachine m = FsmFactory.eINSTANCE.createFiniteStateMachine();
+    addStates.apply(m);
+    return m;
+  }
+  
+  public static FiniteStateMachine machine(final String name) {
+    final Procedure1<FiniteStateMachine> _function = new Procedure1<FiniteStateMachine>() {
+      public void apply(final FiniteStateMachine it) {
+      }
+    };
+    FiniteStateMachine _machine = Model.machine(name, _function);
+    return _machine;
+  }
+  
+  /**
+   * State
+   */
+  public static void state(final FiniteStateMachine m, final String name, final Procedure1<? super Pair<FiniteStateMachine,IncompleteTransition>> addTransitions) {
+    IncompleteTransition _incompleteTransition = new IncompleteTransition();
+    final Procedure1<IncompleteTransition> _function = new Procedure1<IncompleteTransition>() {
+      public void apply(final IncompleteTransition it) {
+        it.setSource(name);
+      }
+    };
+    final IncompleteTransition t = ObjectExtensions.<IncompleteTransition>operator_doubleArrow(_incompleteTransition, _function);
+    Model.addState(m, name);
+    Pair<FiniteStateMachine,IncompleteTransition> _mappedTo = Pair.<FiniteStateMachine, IncompleteTransition>of(m, t);
+    addTransitions.apply(_mappedTo);
+  }
+  
+  public static void state(final FiniteStateMachine m, final String name) {
+    final Procedure1<Pair<FiniteStateMachine,IncompleteTransition>> _function = new Procedure1<Pair<FiniteStateMachine,IncompleteTransition>>() {
+      public void apply(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+      }
+    };
+    Model.state(m, name, _function);
+  }
+  
+  public static State addState(final FiniteStateMachine m, final String name) {
+    State _elvis = null;
+    EList<State> _states = m.getStates();
+    final Function1<State,Boolean> _function = new Function1<State,Boolean>() {
+      public Boolean apply(final State s) {
+        String _name = s.getName();
+        boolean _equals = Objects.equal(_name, name);
+        return Boolean.valueOf(_equals);
+      }
+    };
+    State _findFirst = IterableExtensions.<State>findFirst(_states, _function);
+    if (_findFirst != null) {
+      _elvis = _findFirst;
+    } else {
+      State _createState = FsmFactory.eINSTANCE.createState();
+      final Procedure1<State> _function_1 = new Procedure1<State>() {
+        public void apply(final State s) {
+          s.setName(name);
+        }
+      };
+      State _doubleArrow = ObjectExtensions.<State>operator_doubleArrow(_createState, _function_1);
+      _elvis = ObjectExtensions.<State>operator_elvis(_findFirst, _doubleArrow);
+    }
+    final State s = _elvis;
+    EList<State> _states_1 = m.getStates();
+    _states_1.add(s);
+    return s;
+  }
+  
+  /**
+   * Initial state
+   */
+  public static void initial(final FiniteStateMachine m, final String name, final Procedure1<? super Pair<FiniteStateMachine,IncompleteTransition>> addTransitions) {
+    final Procedure1<Pair<FiniteStateMachine,IncompleteTransition>> _function = new Procedure1<Pair<FiniteStateMachine,IncompleteTransition>>() {
+      public void apply(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+        FiniteStateMachine _key = it.getKey();
+        FiniteStateMachine _key_1 = it.getKey();
+        EList<State> _states = _key_1.getStates();
+        final Function1<State,Boolean> _function = new Function1<State,Boolean>() {
+          public Boolean apply(final State s) {
+            String _name = s.getName();
+            boolean _equals = Objects.equal(_name, name);
+            return Boolean.valueOf(_equals);
+          }
+        };
+        State _findFirst = IterableExtensions.<State>findFirst(_states, _function);
+        _key.setInitial(_findFirst);
+        addTransitions.apply(it);
+      }
+    };
+    Model.state(m, name, _function);
+  }
+  
+  public static void initial(final FiniteStateMachine m, final String name) {
+    final Procedure1<Pair<FiniteStateMachine,IncompleteTransition>> _function = new Procedure1<Pair<FiniteStateMachine,IncompleteTransition>>() {
+      public void apply(final Pair<FiniteStateMachine,IncompleteTransition> it) {
+      }
+    };
+    Model.initial(m, name, _function);
+  }
+  
+  /**
+   * Transitions
+   */
+  public static void input(final Pair<FiniteStateMachine,IncompleteTransition> it, final String input) {
+    IncompleteTransition _value = it.getValue();
+    _value.setInput(input);
+  }
+  
+  public static void output(final Pair<FiniteStateMachine,IncompleteTransition> it, final String output) {
+    IncompleteTransition _value = it.getValue();
+    _value.setOutput(output);
+  }
+  
+  public static void to(final Pair<FiniteStateMachine,IncompleteTransition> it, final String target) {
+    FiniteStateMachine _key = it.getKey();
+    IncompleteTransition _value = it.getValue();
+    Model.installTransition(_key, _value, target);
+  }
+  
+  public static void installTransition(final FiniteStateMachine m, final IncompleteTransition t, final String targetName) {
+    Transition _createTransition = FsmFactory.eINSTANCE.createTransition();
+    final Procedure1<Transition> _function = new Procedure1<Transition>() {
+      public void apply(final Transition it) {
+        String _input = t.getInput();
+        it.setInput(_input);
+        String _output = t.getOutput();
+        it.setOutput(_output);
+        EList<State> _states = m.getStates();
+        final Function1<State,Boolean> _function = new Function1<State,Boolean>() {
+          public Boolean apply(final State it) {
+            String _name = it.getName();
+            String _source = t.getSource();
+            boolean _equals = Objects.equal(_name, _source);
+            return Boolean.valueOf(_equals);
+          }
+        };
+        State _findFirst = IterableExtensions.<State>findFirst(_states, _function);
+        it.setSource(_findFirst);
+        State _addState = Model.addState(m, targetName);
+        it.setTarget(_addState);
+      }
+    };
+    ObjectExtensions.<Transition>operator_doubleArrow(_createTransition, _function);
+    t.setInput(null);
+    t.setOutput(null);
+  }
+  
+  /**
+   * This is the actual interpreter
+   */
+  public static void run(final FiniteStateMachine it) {
+    State current_state = it.getInitial();
+    Scanner _scanner = new Scanner(System.in);
+    Scanner scanner = _scanner;
+    boolean _while = true;
+    while (_while) {
+      {
+        final List<Transition> ts = current_state.getLeavingTransitions();
+        String _name = current_state.getName();
+        String _plus = ("[" + _name);
+        String _plus_1 = (_plus + "] What is the next event? available:");
+        InputOutput.<String>print(_plus_1);
+        final Procedure1<Transition> _function = new Procedure1<Transition>() {
+          public void apply(final Transition it) {
+            String _input = it.getInput();
+            String _plus = (" <" + _input);
+            String _plus_1 = (_plus + ">");
+            InputOutput.<String>print(_plus_1);
+          }
+        };
+        IterableExtensions.<Transition>forEach(ts, _function);
+        InputOutput.<String>print("?");
+        final String input = scanner.nextLine();
+        final Function1<Transition,Boolean> _function_1 = new Function1<Transition,Boolean>() {
+          public Boolean apply(final Transition t) {
+            String _input = t.getInput();
+            boolean _equals = Objects.equal(_input, input);
+            return Boolean.valueOf(_equals);
+          }
+        };
+        final Transition t = IterableExtensions.<Transition>findFirst(ts, _function_1);
+        boolean _notEquals = (!Objects.equal(t, null));
+        if (_notEquals) {
+          String _output = t.getOutput();
+          String _plus_2 = ("machine says: " + _output);
+          InputOutput.<String>println(_plus_2);
+          State _target = t.getTarget();
+          current_state = _target;
+        } else {
+          InputOutput.<String>println("invalid input");
+        }
+      }
+      _while = true;
+    }
+  }
+}

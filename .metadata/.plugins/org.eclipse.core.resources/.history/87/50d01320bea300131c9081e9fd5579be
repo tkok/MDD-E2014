@@ -1,0 +1,240 @@
+/**
+ * (c) Andrzej Wąsowski 2014
+ * A set of constraints for the FiniteStateMachine example, implemented in Xtend.
+ * I avoid EMF integration for constraints on purpose, to keep this simple.
+ * IMHO, you should always avoid the EMF integration for constraints, if you do
+ * not explicitly need it.  It seems just way to complex.
+ */
+package validation;
+
+import T1.Fax;
+import T1.Printer;
+import T1.PrinterPool;
+import T2.Copier;
+import T2.Scanner;
+import T4.ColorPrinterHead;
+import com.google.common.base.Objects;
+import java.util.Arrays;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+
+@SuppressWarnings("all")
+public class Constraints {
+  protected static boolean _constraint(final PrinterPool it) {
+    boolean _and = false;
+    boolean _printerIsMandatory = Constraints.printerIsMandatory(it);
+    if (!_printerIsMandatory) {
+      _and = false;
+    } else {
+      boolean _faxRequiresAPrinter = Constraints.faxRequiresAPrinter(it);
+      _and = (_printerIsMandatory && _faxRequiresAPrinter);
+    }
+    return _and;
+  }
+  
+  public static boolean printerIsMandatory(final PrinterPool it) {
+    Printer _printer = it.getPrinter();
+    boolean _notEquals = (!Objects.equal(_printer, null));
+    return _notEquals;
+  }
+  
+  public static boolean faxRequiresAPrinter(final PrinterPool it) {
+    boolean _or = false;
+    Fax _fax = it.getFax();
+    boolean _equals = Objects.equal(_fax, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      Printer _printer = it.getPrinter();
+      boolean _notEquals = (!Objects.equal(_printer, null));
+      _or = (_equals || _notEquals);
+    }
+    return _or;
+  }
+  
+  protected static boolean _constraint(final Fax it) {
+    PrinterPool _pool = it.getPool();
+    Printer _printer = _pool.getPrinter();
+    boolean _notEquals = (!Objects.equal(_printer, null));
+    return _notEquals;
+  }
+  
+  protected static boolean _constraint(final T2.PrinterPool it) {
+    boolean _and = false;
+    boolean _or = false;
+    T2.Fax _fax = it.getFax();
+    boolean _equals = Objects.equal(_fax, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      T2.Printer _printer = it.getPrinter();
+      boolean _notEquals = (!Objects.equal(_printer, null));
+      _or = (_equals || _notEquals);
+    }
+    if (!_or) {
+      _and = false;
+    } else {
+      boolean _or_1 = false;
+      Copier _copier = it.getCopier();
+      boolean _equals_1 = Objects.equal(_copier, null);
+      if (_equals_1) {
+        _or_1 = true;
+      } else {
+        boolean _and_1 = false;
+        Scanner _scanner = it.getScanner();
+        boolean _notEquals_1 = (!Objects.equal(_scanner, null));
+        if (!_notEquals_1) {
+          _and_1 = false;
+        } else {
+          T2.Printer _printer_1 = it.getPrinter();
+          boolean _notEquals_2 = (!Objects.equal(_printer_1, null));
+          _and_1 = (_notEquals_1 && _notEquals_2);
+        }
+        _or_1 = (_equals_1 || _and_1);
+      }
+      _and = (_or && _or_1);
+    }
+    return _and;
+  }
+  
+  protected static boolean _constraint(final T3.PrinterPool it) {
+    int _minSpeed = it.getMinSpeed();
+    int _speed = it.getSpeed();
+    int _minus = (_speed - 300);
+    boolean _equals = (_minSpeed == _minus);
+    return _equals;
+  }
+  
+  protected static boolean _constraint(final T4.Printer it) {
+    boolean _xifexpression = false;
+    boolean _isColor = it.isColor();
+    if (_isColor) {
+      ColorPrinterHead _head = it.getHead();
+      boolean _notEquals = (!Objects.equal(_head, null));
+      _xifexpression = _notEquals;
+    } else {
+      _xifexpression = true;
+    }
+    return _xifexpression;
+  }
+  
+  protected static boolean _constraint(final T5.PrinterPool it) {
+    boolean _xifexpression = false;
+    boolean _isColor = it.isColor();
+    if (_isColor) {
+      EList<T5.Printer> _printer = it.getPrinter();
+      final Function1<T5.Printer,Boolean> _function = new Function1<T5.Printer,Boolean>() {
+        public Boolean apply(final T5.Printer it) {
+          boolean _isColor = it.isColor();
+          return Boolean.valueOf(_isColor);
+        }
+      };
+      boolean _exists = IterableExtensions.<T5.Printer>exists(_printer, _function);
+      _xifexpression = _exists;
+    } else {
+      _xifexpression = false;
+    }
+    return _xifexpression;
+  }
+  
+  protected static boolean _constraint(final T6.PrinterPool it) {
+    boolean _and = false;
+    boolean _and_1 = false;
+    boolean _or = false;
+    EList<T6.Scanner> _scanner = it.getScanner();
+    final Function1<T6.Scanner,Boolean> _function = new Function1<T6.Scanner,Boolean>() {
+      public Boolean apply(final T6.Scanner it) {
+        boolean _isColor = it.isColor();
+        boolean _not = (!_isColor);
+        return Boolean.valueOf(_not);
+      }
+    };
+    boolean _forall = IterableExtensions.<T6.Scanner>forall(_scanner, _function);
+    if (_forall) {
+      _or = true;
+    } else {
+      EList<T6.Printer> _printer = it.getPrinter();
+      final Function1<T6.Printer,Boolean> _function_1 = new Function1<T6.Printer,Boolean>() {
+        public Boolean apply(final T6.Printer it) {
+          boolean _isColor = it.isColor();
+          return Boolean.valueOf(_isColor);
+        }
+      };
+      boolean _exists = IterableExtensions.<T6.Printer>exists(_printer, _function_1);
+      _or = (_forall || _exists);
+    }
+    if (!_or) {
+      _and_1 = false;
+    } else {
+      boolean _or_1 = false;
+      EList<T6.Scanner> _scanner_1 = it.getScanner();
+      final Function1<T6.Scanner,Boolean> _function_2 = new Function1<T6.Scanner,Boolean>() {
+        public Boolean apply(final T6.Scanner it) {
+          boolean _isColor = it.isColor();
+          boolean _not = (!_isColor);
+          return Boolean.valueOf(_not);
+        }
+      };
+      boolean _forall_1 = IterableExtensions.<T6.Scanner>forall(_scanner_1, _function_2);
+      if (_forall_1) {
+        _or_1 = true;
+      } else {
+        EList<T6.Printer> _printer_1 = it.getPrinter();
+        final Function1<T6.Printer,Boolean> _function_3 = new Function1<T6.Printer,Boolean>() {
+          public Boolean apply(final T6.Printer it) {
+            boolean _isColor = it.isColor();
+            return Boolean.valueOf(_isColor);
+          }
+        };
+        boolean _forall_2 = IterableExtensions.<T6.Printer>forall(_printer_1, _function_3);
+        _or_1 = (_forall_1 || _forall_2);
+      }
+      _and_1 = (_or && _or_1);
+    }
+    if (!_and_1) {
+      _and = false;
+    } else {
+      EList<T6.Printer> _printer_2 = it.getPrinter();
+      final Function1<T6.Printer,Boolean> _function_4 = new Function1<T6.Printer,Boolean>() {
+        public Boolean apply(final T6.Printer it) {
+          boolean _isColor = it.isColor();
+          return Boolean.valueOf(_isColor);
+        }
+      };
+      Iterable<T6.Printer> _filter = IterableExtensions.<T6.Printer>filter(_printer_2, _function_4);
+      int _size = IterableExtensions.size(_filter);
+      boolean _lessEqualsThan = (_size <= 1);
+      _and = (_and_1 && _lessEqualsThan);
+    }
+    return _and;
+  }
+  
+  protected static boolean _constraint(final EObject it) {
+    return true;
+  }
+  
+  public static boolean constraint(final EObject it) {
+    if (it instanceof Fax) {
+      return _constraint((Fax)it);
+    } else if (it instanceof PrinterPool) {
+      return _constraint((PrinterPool)it);
+    } else if (it instanceof T2.PrinterPool) {
+      return _constraint((T2.PrinterPool)it);
+    } else if (it instanceof T3.PrinterPool) {
+      return _constraint((T3.PrinterPool)it);
+    } else if (it instanceof T4.Printer) {
+      return _constraint((T4.Printer)it);
+    } else if (it instanceof T5.PrinterPool) {
+      return _constraint((T5.PrinterPool)it);
+    } else if (it instanceof T6.PrinterPool) {
+      return _constraint((T6.PrinterPool)it);
+    } else if (it != null) {
+      return _constraint(it);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(it).toString());
+    }
+  }
+}
